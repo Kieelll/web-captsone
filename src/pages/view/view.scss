@@ -1,0 +1,22 @@
+.view{
+  display: flex;
+  width: 100%;
+  
+
+  .viewContainer{
+    flex: 6;
+
+    .transacContainer{
+      box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+      padding: 20px;
+      margin: 20px;
+
+      .transacTitle{
+        font-weight: 500;
+        color: gray;
+        margin-bottom: 15px;
+        
+      }
+    }
+  }
+}

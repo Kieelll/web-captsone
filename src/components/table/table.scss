@@ -1,0 +1,40 @@
+.table {
+  width: 100%;
+
+  .tableCell {
+    padding: 10px 20px;
+
+    .cellWrapper {
+      display: flex;
+      align-items: center;
+
+      .driver {
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+        
+      }
+    }
+  }
+
+  .status{
+    // padding: 5px;
+    // border-radius: 5px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+
+    &.delivered {
+      color: green;
+      background-color: rgba(0, 128, 0, 0.521);
+    }
+    &.pending {
+      color: red;
+      background-color: rgba(224, 70, 35, 0.521);
+    }
+  }
+
+  
+}

@@ -1,0 +1,106 @@
+.datatable {
+  height: 600px;
+  padding: 20px;
+
+  .datatableTitle {
+    width: 100%;
+    font-size: 24px;
+    color: gray;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .link {
+      text-decoration: none;
+      color: green;
+      font-size: 16px;
+      font-weight: 400;
+      border: 1px solid green;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+
+  .cellWithImg {
+    display: flex;
+    align-items: center;
+
+    .cellImg {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+  }
+
+  .cellWithStatus {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+
+    &.active {
+      color: green;
+      background-color: rgba(0, 128, 0, 0.521);
+    }
+    &.pending {
+      background-color: rgba(255, 217, 0, 0.505);
+      color: goldenrod;
+    }
+    &.passive {
+      color: red;
+      background-color: rgba(224, 70, 35, 0.521);
+    }
+  }
+
+  
+  .cellAction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    height: 100%;  
+    min-height: 40px; 
+  }
+
+  .viewButton,
+  .deleteButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    min-width: 60px;  
+    height: 30px;  
+  }
+
+  .viewButton {
+    background-color: rgba(0, 0, 139, 0.1); 
+    color: darkblue;
+    border: none;
+
+    &:hover {
+      background-color: rgba(0, 0, 139, 0.2);
+    }
+  }
+
+  .deleteButton {
+    background-color: rgba(220, 20, 60, 0.1); 
+    color: crimson;
+    border: none;
+
+    &:hover {
+      background-color: rgba(220, 20, 60, 0.2);
+    }
+  }
+}

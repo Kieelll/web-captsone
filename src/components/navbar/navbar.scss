@@ -1,0 +1,94 @@
+.navbar {
+  height: 60px;
+  background: linear-gradient(135deg, #a8e6cf, #56ab2f); // light green to rich green
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #ffffff; // white text for contrast
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-bottom: none;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .wrapper {
+    width: 100%;
+    display: flex;
+    padding: 0 20px;
+    align-items: center;
+    justify-content: space-between;
+
+    .search {
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+        color: #fff;
+        font-size: 14px;
+
+        &::placeholder {
+          color: #e0e0e0;
+          font-size: 13px;
+        }
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    .items {
+      display: flex;
+      align-items: center;
+
+      .item {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+
+        .icon {
+          font-size: 22px;
+          color: #ffffff;
+        }
+
+        .avatar {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2px solid #ffffff;
+        }
+
+        .counter {
+          width: 16px;
+          height: 16px;
+          background-color: #ff6b6b; // a nice red/pink for notification badge
+          border-radius: 50%;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+          font-weight: bold;
+          position: absolute;
+          top: -5px;
+          right: -5px;
+        }
+      }
+    }
+  }
+}

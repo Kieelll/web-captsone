@@ -7,6 +7,7 @@ import View from "./pages/view/View";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import { useContext } from "react";
+import Schedule from "./pages/Schedule/Schedule";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
+            <Route path="Sched" element={<Schedule />} />
             <Route path="View" element={<View />} />
             <Route path="login" element={<Login />} />
             <Route path="users">

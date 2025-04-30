@@ -1,0 +1,145 @@
+.weeklySchedule {
+  padding: 20px;
+  background: #f9fcf7;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(34, 139, 34, 0.15);
+  font-family: 'Segoe UI', sans-serif;
+
+  .scheduleHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    .navigation {
+      display: flex;
+      gap: 10px;
+
+      .arrow {
+        font-size: 22px;
+        color: #4caf50;
+        cursor: pointer;
+        transition: color 0.2s;
+
+        &:hover {
+          color: #388e3c;
+        }
+      }
+    }
+
+    .dateRange {
+      font-weight: 600;
+      color: #2e7d32;
+    }
+  }
+
+  .collectorBlock {
+    margin-bottom: 30px;
+
+    .calendarGrid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 15px;
+
+      .calendarCell {
+        background-color: #e8f5e9;
+        border-radius: 10px;
+        padding: 12px;
+        min-height: 110px;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.2s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+
+        &:hover {
+          background-color: #dcedc8;
+          transform: translateY(-2px);
+        }
+
+        .dayLabel {
+          font-weight: 600;
+          font-size: 14px;
+          color: #33691e;
+          margin-bottom: 6px;
+        }
+
+        .collection {
+          background-color: #c8e6c9;
+          padding: 6px 8px;
+          margin-bottom: 6px;
+          border-radius: 6px;
+          font-size: 13px;
+          color: #1b5e20;
+
+          .time {
+            font-weight: 600;
+            margin-right: 4px;
+          }
+
+          .type {
+            font-style: italic;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Modal Styles
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 100, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+
+  .modalContent {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+
+    h3 {
+      margin-bottom: 10px;
+      color: #2e7d32;
+    }
+
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 8px;
+      border: none;
+      border-radius: 6px;
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+      font-weight: 500;
+
+      &:hover {
+        background-color: #388e3c;
+      }
+
+      &:last-child {
+        background-color: #ccc;
+        color: #333;
+
+        &:hover {
+          background-color: #bbb;
+        }
+      }
+    }
+  }
+}

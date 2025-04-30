@@ -49,10 +49,13 @@ export const Sidebar = () => {
               <span>Transactions</span>
             </li>
           </Link>
+          <Link to="/Sched" style={{ textDecoration: "none" }}>
           <li>
             <TrendingUpIcon className="icon" />
-            <span>Sales</span>
+            <span>Schedules</span>
           </li>
+          </Link>
+         
 
           <p className="title">USER</p>
           <li>

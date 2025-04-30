@@ -18,16 +18,16 @@
       font-size: 14px;
       color: rgb(160, 160, 160,);
     }
-      .counter{
+    .counter{
         font-size: 28px;
         font-weight: 300;
-      }
-        .link{
+    }
+    .link{
           font-size: 12px;
           border-bottom: 1px solid gray;
-      }
+    }
 
-      .percentage{
+    .percentage{
         display: flex;
         align-items: center;
         font-size: 14px;
@@ -38,7 +38,7 @@
         &.negative{
           color: red;
         }
-      }
+    }
 
       .icon{
         font-size: 18px;

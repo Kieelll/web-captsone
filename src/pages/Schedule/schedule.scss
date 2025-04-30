@@ -1,0 +1,16 @@
+.schedule{
+display: flex;
+
+  .scheduleContainer{
+    flex: 6;
+
+    .schedulefilterContainer, .weeklySchedule{
+      box-shadow: 0 4px 12px rgba(34, 139, 34, 0.15);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px;
+    }
+  }
+
+
+}

@@ -1,8 +1,15 @@
 .table {
-  width: 100%;
+
+  padding: 20px;
+  background: #f9fcf7;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(34, 139, 34, 0.15);
+  font-family: 'Segoe UI', sans-serif;
 
   .tableCell {
-    padding: 10px 20px;
+    padding: 12px;
+    font-size: 14px;
+    color: #2e7d32;
 
     .cellWrapper {
       display: flex;
@@ -11,15 +18,14 @@
       .driver {
         width: 32px;
         height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
         margin-right: 10px;
-        
       }
     }
   }
 
-  .status{
-    // padding: 5px;
-    // border-radius: 5px;
+  .status {
     padding: 5px 10px;
     border-radius: 20px;
     font-size: 12px;
@@ -36,5 +42,9 @@
     }
   }
 
-  
+  .tableCell {
+    &:hover {
+      background-color: rgba(0, 128, 0, 0.1);
+    }
+  }
 }

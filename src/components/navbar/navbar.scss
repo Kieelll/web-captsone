@@ -10,6 +10,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  
 
   .wrapper {
     width: 100%;
@@ -48,6 +49,7 @@
       display: flex;
       align-items: center;
 
+
       .item {
         display: flex;
         align-items: center;
@@ -76,7 +78,7 @@
         .counter {
           width: 16px;
           height: 16px;
-          background-color: #ff6b6b; // a nice red/pink for notification badge
+          background-color: #ff6b6b; 
           border-radius: 50%;
           color: white;
           display: flex;

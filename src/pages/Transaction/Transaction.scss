@@ -1,0 +1,12 @@
+.transaction{
+  display: flex;
+
+  .transactionContainer{
+    flex: 6;
+
+    .transactionContent{
+      padding: 50px 100px;
+      
+    }
+  }
+}

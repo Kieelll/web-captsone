@@ -6,7 +6,7 @@ const Schedules = () => {
   const [dropdownValues, setDropdownValues] = useState({
     staffMember: "All Staff",
     position: "All Positions",
-    dateRange: "This Week",
+    dateRange: "This Month",
     status: "All Statuses",
   });
 
@@ -81,7 +81,7 @@ const Schedules = () => {
               <ArrowDownwardIcon />
             </div>
             <div className={`dropdownMenu ${isOpen.dateRange ? "open" : ""}`}>
-              {["This Week", "Last Week", "Next Week", "This Month"].map((item) => (
+              {["This Week", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].map((item) => (
                 <div
                   key={item}
                   className="dropdownItem"

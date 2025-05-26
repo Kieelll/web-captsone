@@ -1,0 +1,12 @@
+.stocks {
+  display: flex;
+
+  .stocksPage {
+    flex: 6;
+
+    .stocksContent{
+      padding: 50px 100px;
+    }
+
+  }
+}

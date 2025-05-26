@@ -1,0 +1,70 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: linear-gradient(135deg, #e0f5d8, #f1fff8);
+  border: 1px solid #a0d8a0;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 300px;
+
+  input {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #d2f7c7;
+    font-size: 14px;
+    outline: none;
+
+    &::placeholder {
+      color: #4a7740;
+    }
+  }
+
+  .modalButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+
+    .saveBtn, .cancelBtn {
+      padding: 10px 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .saveBtn {
+      background: linear-gradient(45deg, #9be19b, #519b4a);
+      color: white;
+
+      &:hover {
+        background: linear-gradient(45deg, #6dc96d, #407a3d);
+      }
+    }
+
+    .cancelBtn {
+      background: #cbecc3;
+      color: #1e4822;
+
+      &:hover {
+        background: #b5dbb1;
+      }
+    }
+  }
+}

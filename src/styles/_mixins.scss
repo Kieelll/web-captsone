@@ -1,0 +1,59 @@
+@import './variables';
+
+// Flexbox mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+}
+
+// Card styles
+@mixin card-container {
+  background: linear-gradient(135deg, $light-green, $lighter-green);
+  margin: $spacing-xl $spacing-xxl;
+  border-radius: $border-radius-sm;
+  padding: $spacing-lg;
+}
+
+// Interactive elements
+@mixin hover-scale {
+  transition: $transition-default;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+// Text styles
+@mixin heading-text {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $primary-green;
+  border-left: 6px solid $primary-green;
+  padding-left: $spacing-sm;
+}
+
+// Input styles
+@mixin input-base {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: $text-dark;
+  font-size: $font-size-base;
+} 

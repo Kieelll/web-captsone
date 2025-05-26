@@ -1,106 +1,113 @@
 .datatable {
-  height: 600px;
-  padding: 20px;
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1e1e1e;
+  background: linear-gradient(135deg, #e9f9ef, #f1fff8);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
 
   .datatableTitle {
-    width: 100%;
-    font-size: 24px;
-    color: gray;
-    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: 700;
+    color: #2e7d32;
+    margin-bottom: 20px;
+    border-left: 6px solid #2e7d32;
+    padding-left: 12px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
 
     .link {
       text-decoration: none;
-      color: green;
+      color: #ffffff;
       font-size: 16px;
-      font-weight: 400;
-      border: 1px solid green;
-      padding: 5px;
-      border-radius: 5px;
+      font-weight: 600;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
       cursor: pointer;
+      background: linear-gradient(135deg, #43a047, #2e7d32);
+      box-shadow: 0 4px 10px rgba(67, 160, 71, 0.3);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: linear-gradient(135deg, #388e3c, #1b5e20);
+        transform: translateY(-2px);
+      }
     }
   }
 
-  .cellWithImg {
-    display: flex;
-    align-items: center;
-
-    .cellImg {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 20px;
-    }
-  }
-
-  .cellWithStatus {
-    padding: 5px 10px;
+  .tableWrapper {
+    background: #ffffff;
     border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: capitalize;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    padding: 20px;
+    flex: 1;
+    min-height: 0;
+  }
 
-    &.active {
-      color: green;
-      background-color: rgba(0, 128, 0, 0.521);
+  .datagrid {
+    border: none;
+    font-size: 14px;
+
+    .MuiDataGrid-row {
+      transition: background-color 0.3s ease;
     }
-    &.pending {
-      background-color: rgba(255, 217, 0, 0.505);
-      color: goldenrod;
+
+    .MuiDataGrid-row:hover {
+      background-color: #f0fff5;
     }
-    &.passive {
-      color: red;
-      background-color: rgba(224, 70, 35, 0.521);
+
+    .MuiCheckbox-root {
+      color: #2e7d32 !important;
+    }
+
+    .MuiDataGrid-columnHeaders {
+      background-color: #d9f0dd;
+      font-weight: 600;
+      color: #2e7d32;
     }
   }
 
-  
   .cellAction {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    height: 100%;  
-    min-height: 40px; 
-  }
+    gap: 10px;
+    height: 100%;
 
-  .viewButton,
-  .deleteButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: capitalize;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    min-width: 60px;  
-    height: 30px;  
-  }
-
-  .viewButton {
-    background-color: rgba(0, 0, 139, 0.1); 
-    color: darkblue;
-    border: none;
-
-    &:hover {
-      background-color: rgba(0, 0, 139, 0.2);
+    .editButton,
+    .deleteButton {
+      padding: 7px 14px;
+      border: none;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     }
-  }
 
-  .deleteButton {
-    background-color: rgba(220, 20, 60, 0.1); 
-    color: crimson;
-    border: none;
+    .editButton {
+      background: linear-gradient(45deg, #66bb6a, #2e7d32);
+      color: #fff;
 
-    &:hover {
-      background-color: rgba(220, 20, 60, 0.2);
+      &:hover {
+        background: linear-gradient(135deg, #66bb6a, #2e7d32);
+        transform: translateY(-1px);
+      }
+    }
+
+    .deleteButton {
+      background: linear-gradient(45deg, #ef5350, #d32f2f);
+      color: #fff;
+
+      &:hover {
+        background: linear-gradient(135deg, #e53935, #b71c1c);
+        transform: translateY(-1px);
+      }
     }
   }
 }

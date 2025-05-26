@@ -1,94 +1,141 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
 .navbar {
   height: 60px;
-  background: linear-gradient(135deg, #a8e6cf, #56ab2f); // light green to rich green
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: #ffffff; // white text for contrast
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-bottom: none;
+  background: $gradient-green;
+  @include flex-between;
+  font-size: $font-size-base;
+  color: $white;
+  box-shadow: $box-shadow;
   position: sticky;
   top: 0;
   z-index: 100;
-  
 
   .wrapper {
     width: 100%;
-    display: flex;
-    padding: 0 20px;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-between;
+    padding: 0 $spacing-md;
 
     .search {
-      display: flex;
-      align-items: center;
-      background-color: rgba(255, 255, 255, 0.2);
-      padding: 6px 12px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
+      @include flex-center;
+      background-color: rgba($white, 0.2);
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $border-radius-sm;
+      transition: $transition-default;
 
       input {
-        border: none;
-        outline: none;
-        background: transparent;
-        color: #fff;
-        font-size: 14px;
+        @include input-base;
 
         &::placeholder {
-          color: #e0e0e0;
-          font-size: 13px;
+          color: $text-dark;
+          font-size: $font-size-sm;
         }
       }
 
       &:hover {
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba($white, 0.3);
       }
     }
 
     .items {
-      display: flex;
-      align-items: center;
-
+      @include flex-center;
 
       .item {
-        display: flex;
-        align-items: center;
-        margin-left: 20px;
+        @include flex-center;
+        margin-left: $spacing-md;
         position: relative;
         cursor: pointer;
-        transition: all 0.3s ease;
-
-        &:hover {
-          transform: scale(1.1);
-        }
+        @include hover-scale;
 
         .icon {
-          font-size: 22px;
-          color: #ffffff;
-        }
-
-        .avatar {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          object-fit: cover;
-          border: 2px solid #ffffff;
+          font-size: $font-size-lg;
+          color: $white;
         }
 
         .counter {
           width: 16px;
           height: 16px;
-          background-color: #ff6b6b; 
-          border-radius: 50%;
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 10px;
-          font-weight: bold;
+          background-color: $error-red;
+          border-radius: $border-radius-circle;
+          color: $white;
+          @include flex-center;
+          font-size: $font-size-sm;
+          font-weight: $font-weight-bold;
           position: absolute;
           top: -5px;
           right: -5px;
+        }
+      }
+
+      .profile {
+        position: relative;
+        cursor: pointer;
+
+        .avatar {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .dropdown {
+          position: absolute;
+          top: 40px;
+          right: 0;
+          background-color: white;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+          z-index: 10;
+          width: 150px;
+          padding: 0.5rem;
+        }
+
+        .custom-dropdown {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          .dropdown-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 0.8rem;
+            background-color: #c1e5c1;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+
+            .icon-box {
+              background-color: #5dae5d;
+              padding: 0.3rem;
+              border-radius: 6px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 28px;
+              height: 28px;
+            }
+
+            .icon {
+              color: white;
+              font-size: 1rem;
+            }
+
+            span {
+              font-size: 0.75rem;
+              white-space: nowrap;
+            }
+
+            &:hover {
+              background-color: #aedcae;
+            }
+          }
         }
       }
     }

@@ -1,0 +1,133 @@
+.stocksContainer {
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1e1e1e;
+  background: linear-gradient(135deg, #e9f9ef, #f1fff8);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  overflow-y: auto;
+
+  .headerSection {
+    font-size: 30px;
+    font-weight: 700;
+    color: #2e7d32;
+    margin-bottom: 20px;
+    border-left: 6px solid #2e7d32;
+    padding-left: 12px;
+    display: flex;
+    justify-content: space-between;
+
+    .addStockButton {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #43a047, #2e7d32);
+      box-shadow: 0 4px 10px rgba(67, 160, 71, 0.3);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: linear-gradient(135deg, #388e3c, #1b5e20);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .cardsWrapper {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .stockCard {
+    background: #f9fdfb;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+
+    .titleInput {
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-left: 5px solid #2e7d32;
+      padding-left: 10px;
+      width: 100%;
+      margin-bottom: 10px;
+      color: #2e7d32;
+      background: transparent;
+      outline: none;
+    }
+
+    .stockRow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 5px 0;
+
+      span {
+        font-size: 16px;
+        font-weight: 500;
+        width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        .value {
+          color: #2e7d32;
+          font-weight: 700;
+          margin-left: 5px;
+        }
+      }
+
+      .changeInput {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        label {
+          font-weight: 500;
+        }
+
+        input {
+          width: 80px;
+          padding: 6px 8px;
+          border-radius: 6px;
+          border: 1px solid #ccc;
+          font-size: 14px;
+        }
+      }
+
+      .updateButton {
+        background: linear-gradient(45deg, #66bb6a, #2e7d32);
+        color: #fff;
+        border: none;
+        padding: 7px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: linear-gradient(45deg, #4caf50, #256d27);
+          transform: translateY(-1px);
+        }
+      }
+    }
+  }
+}

@@ -1,33 +1,53 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
 
 .home {
-  display: flex;  
-  
+  display: flex;
 
-  .homeContainer{
-    flex: 6;  
+  .homeContainer {
+    flex: 6;
     
-
-    .widgets, .charts{   
-      display: flex;  
-      padding: 20px;  
-      gap: 20px;  // gap between
+    
+    
+    .charts {
+      @include card-container;
+      @include flex-wrap;
+      align-items: stretch;
     }
 
-    .charts{
-      padding: 5px 20px;
+    .widgetsContainer{
+      @include card-container;
+      @include flex-column;
+      gap: $spacing-md;
+
       
-    }
-    // .listContainer{
-    //   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-    //   padding: 20px;
-    //   margin: 20px;
+       
+        .text {
+          @include heading-text;
+        }
 
-    //   .listTitle{
-    //     font-weight: 500;
-    //     color: gray;
-    //     margin-bottom: 15px;
-        
-    //   }
-    // }
+      .widgets{
+        @include flex-wrap;
+        flex-direction: row;
+      }
+    }
+
+    .charts {
+      flex-direction: row;
+      gap: 60px;
+    }
+
+    .graphs, .pieChart {
+      flex: 3;
+      @include flex-column;
+      justify-content: center; // ensures vertical centering
+      gap: $spacing-md;
+    }
+
+    .pieChart{
+      padding-right: $spacing-md;
+      display: flex;
+    }
+
   }
 }

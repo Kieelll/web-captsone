@@ -1,0 +1,187 @@
+.adminAccount {
+  display: flex;
+  gap: 20px;
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1e1e1e;
+  background: linear-gradient(135deg, #e9f9ef, #f1fff8);
+  border-radius: 20px;
+
+  max-height: 75vh; 
+  overflow-y: auto; 
+  margin-bottom: 40px;
+
+  flex-direction: column;
+        .datatableTitle {
+    font-size: 30px;
+    font-weight: 700;
+    color: #2e7d32;
+    // margin-bottom: 20px;
+    border-left: 6px solid #2e7d32;
+    padding-left: 12px;
+    display: flex;
+    justify-content: space-between;
+
+    .link {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #43a047, #2e7d32);
+      box-shadow: 0 4px 10px rgba(67, 160, 71, 0.3);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: linear-gradient(135deg, #388e3c, #1b5e20);
+        transform: translateY(-2px);
+      }
+    }
+  }
+  
+    .adminContents {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+
+
+     flex: 1;
+     min-height: 0;
+    }
+
+  .adminAccountTable {
+    flex: 3;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    padding: 20px;
+    overflow-x: auto;
+    
+
+    .datagrid {
+      border: none;
+      font-size: 14px;
+
+      .MuiDataGrid-row {
+        transition: background-color 0.3s ease;
+      }
+
+      .MuiDataGrid-row:hover {
+        background-color: #f0fff5;
+      }
+
+      .MuiCheckbox-root {
+        color: #2e7d32 !important;
+      }
+
+      .MuiDataGrid-columnHeaders {
+        background-color: #d9f0dd;
+        font-weight: 600;
+        color: #2e7d32;
+      }
+    }
+
+    .cellAction {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      height: 100%;
+
+      .viewButton,
+      .deleteButton {
+        padding: 7px 14px;
+        border: none;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+      }
+
+      .viewButton {
+        background: linear-gradient(45deg, #66bb6a, #2e7d32);
+        color: #fff;
+
+        &:hover {
+          background: linear-gradient(45deg, #4caf50, #256d27);
+          transform: translateY(-1px);
+        }
+      }
+
+      .deleteButton {
+        background: linear-gradient(45deg, #ef5350, #d32f2f);
+        color: #fff;
+
+        &:hover {
+          background: linear-gradient(45deg, #e53935, #b71c1c);
+          transform: translateY(-1px);
+        }
+      }
+    }
+  }
+
+  .adminHistory {
+    flex: 2;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .historyHeader {
+      border-left: 6px solid #2e7d32;
+      padding-left: 12px;
+
+      .title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #2e7d32;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin: 4px 0;
+        font-size: 16px;
+      }
+    }
+
+        .historyInfo {
+      background-color: #f9fdfb;
+      border-radius: 12px;
+      padding: 15px;
+      max-height: 73%;
+      overflow-y: auto;
+      border: 1px solid #d9f0dd;
+
+      
+
+      p {
+        font-size: 14px;
+        margin-bottom: 12px;
+        line-height: 1.4;
+        color: #2e7d32;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #d9f0dd;
+
+        .timestamp {
+          color: #777;
+          font-size: 12px;
+          display: block;
+          margin-top: 2px;
+        }
+
+        &:last-child {
+          border-bottom: none; // prevent double-border at end
+        }
+      }
+    }
+  }
+}

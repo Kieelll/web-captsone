@@ -1,11 +1,99 @@
-.chart{
-  flex: 4;
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+
+/* chart.scss */
+.chart {
+  flex: 3;
   padding: 10px;
   color: gray;
+  width: 100%;
+  height: auto;
+  background: #ffffff;
+  border-radius: 30px;
 
-  .title{
-    margin-bottom: 20px;
+  .chartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 0px 30px;
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .arrowIcon {
+      font-size: 20px;
+      cursor: pointer;
+      color: #2e7d32;
+      &:hover {
+        color: #66bb6a;
+      }
+    }
   }
-  
+
+  .title {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2e7d32;
+  }
+
+  .yearDropdown {
+    position: relative;
+
+    .dropdownButton {
+      background-color: #ffffff;
+      border: 1px solid #4caf50;
+      border-radius: 6px;
+      padding: 6px 7px;
+      width: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 500;
+      color: #33691e;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      transition: background-color 0.2s, transform 0.2s;
+
+      &:hover {
+        background-color: #f1f8e9;
+        transform: translateY(-2px);
+      }
+    }
+
+    .dropdownMenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+      border: 1px solid #4caf50;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+      flex-direction: column;
+      margin-top: 5px;
+    }
+
+    .dropdownMenu.open {
+      display: flex;
+    }
+
+    .dropdownItem {
+      padding: 10px;
+      font-weight: 400;
+      color: #33691e;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #f1f8e9;
+      }
+    }
+  }
 }

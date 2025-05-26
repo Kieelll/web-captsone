@@ -1,14 +1,15 @@
 .schedules {
-  padding: 0 20px;
+  padding: 30px;
+  background: linear-gradient(135deg, #e9f9ef, #f1fff8);
+  border-radius: 20px;
 
   .text {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #2e7d32; 
-    
+    font-size: 30px;
+    font-weight: 700;
+    color: #2e7d32;
+    margin-bottom: 20px;
+    border-left: 6px solid #2e7d32;
+    padding-left: 12px;
   }
 
   .scheduleContainer {
@@ -16,9 +17,9 @@
     align-items: center;
     gap: 20px;
     box-shadow: 0 4px 12px rgba(34, 139, 34, 0.15);
-    padding: 10px;
+    padding: 20px 40px;
     border-radius: 12px;
-    background-color: #f9fcf7; 
+    background-color: #f9fcf7;
 
     .dropdowns {
       flex: 4;
@@ -36,7 +37,7 @@
         span {
           font-weight: 500;
           margin-bottom: 5px;
-          color: #33691e; 
+          color: #33691e;
         }
 
         .dropdownButton {
@@ -102,31 +103,94 @@
       align-items: center;
       justify-content: center;
 
+      // .resetBtn,
+      // .applyBtn {
+      //   padding: 10px 12px;
+      //   border: none;
+      //   border-radius: 6px;
+      //   cursor: pointer;
+      //   font-weight: 500;
+      //   transition: background-color 0.3s ease;
+      // }
+
+      // .resetBtn {
+      //   background-color: #f44336;
+      //   color: white;
+
+      //   &:hover {
+      //     background-color: #d32f2f;
+      //   }
+      // }
+
+      // .applyBtn {
+      //   background-color: #4caf50;
+      //   color: white;
+
+      //   &:hover {
+      //     background-color: #388e3c;
+      //   }
+      // }
       .resetBtn,
       .applyBtn {
-        padding: 8px 12px;
+        padding: 11px 10px;
         border: none;
-        border-radius: 6px;
-        cursor: pointer;
+        border-radius: 8px;
+        font-size: 13px;
         font-weight: 500;
-        transition: background-color 0.3s ease;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
       }
 
       .resetBtn {
-        background-color: #f44336;
-        color: white;
+        background: linear-gradient(45deg, #66bb6a, #2e7d32);
+        color: #fff;
 
         &:hover {
-          background-color: #d32f2f;
+          background: linear-gradient(45deg, #4caf50, #256d27);
+          transform: translateY(-2px);
         }
       }
 
       .applyBtn {
-        background-color: #4caf50;
-        color: white;
+        background: linear-gradient(45deg, #ef5350, #d32f2f);
+        color: #fff;
 
         &:hover {
-          background-color: #388e3c;
+          background: linear-gradient(45deg, #e53935, #b71c1c);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
+
+/* 🔻 Responsive Styles - Safe for tablets and phones */
+@media (max-width: 768px) {
+  .schedules {
+    padding: 0 10px;
+
+    .scheduleContainer {
+      flex-direction: column;
+      align-items: stretch;
+
+      .dropdowns {
+        flex-direction: column;
+        gap: 15px;
+
+        .dropdown {
+          width: 100%;
+        }
+      }
+
+      .filterActions {
+        flex-direction: column;
+        align-items: stretch;
+
+        .resetBtn,
+        .applyBtn {
+          width: 100%;
         }
       }
     }

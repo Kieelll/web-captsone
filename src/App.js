@@ -8,7 +8,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import { useContext } from "react";
 import Schedule from "./pages/Schedule/Schedule";
-
+import  Inventory  from "./pages/inventory/Inventory";
+import Chats from "./pages/Chats/Chats";
+import AdminAccount from "./pages/Admin/AdminAccount";
+import Post from "./pages/Post/Post"
+import Location from "./pages/Location/Location";
+import Transaction from "./pages/Transaction/Transaction";
+import Based from "./pages/based/Based";
+import Stocks from "./pages/Stocks/Stocks";
 
 function App() {
 
@@ -18,10 +25,18 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
-            <Route path="Sched" element={<Schedule />} />
+            <Route path= "Location" element= {<Location/>}/>
+            <Route path="Post" element= {<Post/>}/>
+            <Route path="Schedule" element={<Schedule />} />
+            <Route path="AdminAccount" element={<AdminAccount/>}/>
+            <Route path = "Chats" element = {<Chats/>} />
+            <Route path="Transaction" element = {<Transaction/>} />
+            <Route path="stocks" element = {<Stocks/>} />
+            
+            <Route path="Inventory" element = {<Inventory/>} />
             <Route path="View" element={<View />} />
             <Route path="login" element={<Login />} />
-            <Route path="users">
+            <Route path="Users">
               <Route index element={<List />} />
               <Route path=":userId" element={<Single />} />
               

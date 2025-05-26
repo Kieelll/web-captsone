@@ -1,0 +1,268 @@
+.transactionTable {
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1e1e1e;
+  background: linear-gradient(135deg, #e9f9ef, #f1fff8);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  
+
+  .datatableTitle {
+    font-size: 30px;
+    font-weight: 700;
+    color: #2e7d32;
+    margin-bottom: 20px;
+    border-left: 6px solid #2e7d32;
+    padding-left: 12px;
+    display: flex;
+    justify-content: space-between;
+
+    .link {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #43a047, #2e7d32);
+      box-shadow: 0 4px 10px rgba(67, 160, 71, 0.3);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: linear-gradient(135deg, #388e3c, #1b5e20);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  
+
+  .transactionContents {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    flex: 1;
+    min-height: 0;
+    
+
+    .transactionGrid {
+      flex: 1;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+      padding: 20px;
+      min-width: 50%;
+
+      .datagrid {
+        border: none;
+        font-size: 14px;
+
+        .MuiDataGrid-row {
+          transition: background-color 0.3s ease;
+        }
+
+        .MuiDataGrid-row:hover {
+          background-color: #f0fff5;
+        }
+
+        .MuiCheckbox-root {
+          color: #2e7d32 !important;
+        }
+
+        .MuiDataGrid-columnHeaders {
+          background-color: #d9f0dd;
+          font-weight: 600;
+          color: #2e7d32;
+        }
+      }
+    }
+
+    .transactionDescription {
+      flex: 1;
+      background-color: #ffffff;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      overflow: hidden;
+      min-height: 0; // ✅ Needed for scroll to work correctly in flex
+
+      .transactionDetailsCard {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background: #f9fdfb;
+        border: 1px solid #d0e7d4;
+        border-radius: 12px;
+        padding: 28px;
+        transition: box-shadow 0.3s ease;
+
+        h3 {
+          font-size: 24px;
+          color: #2e7d32;
+          border-bottom: 2px solid #c5e5cb;
+          padding-bottom: 10px;
+          margin-bottom: 12px;
+        }
+
+        p {
+          font-size: 14px;
+          line-height: 1.7;
+          color: #444;
+
+          strong {
+            color: #222;
+          }
+        }
+
+        .productItem {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          background: #ffffff;
+          border: 1px solid #e2f0e6;
+          padding: 14px;
+          border-radius: 10px;
+          margin-top: 10px;
+          transition: transform 0.2s ease;
+
+          &:hover {
+            transform: scale(1.01);
+          }
+
+          .productImage {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+          }
+
+          .productInfo {
+            flex: 1;
+
+            p {
+              margin: 0;
+              font-size: 13px;
+              color: #333;
+              line-height: 1.4;
+            }
+          }
+        }
+
+        .productTotals {
+          margin-top: 24px;
+          padding-top: 12px;
+          border-top: 1px solid #d0e7d4;
+          font-size: 14px;
+          color: #2e7d32;
+
+          p {
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+      }
+
+      .noSelection {
+        color: #777;
+        text-align: center;
+        margin-top: 40px;
+      }
+    }
+  }
+
+  .statusWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .statusCell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  padding: 6px 12px;           // adds vertical padding to give spacing inside
+  border-radius: 30px;
+
+  height: 24px;                // fixed height for badge look (adjustable)
+  max-height: 100%;
+  box-sizing: border-box;
+
+  background-color: #eee;      // default (you override below)
+  color: #333;
+
+  &.delivered {
+    background-color: #c8e6c9;
+    color: #2e7d32;
+  }
+
+  &.cancelled {
+    background-color: #ffcdd2;
+    color: #c62828;
+  }
+
+  &.pending {
+    background-color: #fff9c4;
+    color: #f9a825;
+  }
+}
+}
+
+
+
+
+  .cellAction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+
+    .viewButton,
+    .deleteButton {
+      padding: 7px 14px;
+      border: none;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .viewButton {
+      background: linear-gradient(45deg, #66bb6a, #2e7d32);
+      color: #fff;
+
+      &:hover {
+        background: linear-gradient(135deg, #66bb6a, #2e7d32);
+        transform: translateY(-1px);
+      }
+    }
+
+    .deleteButton {
+      background: linear-gradient(45deg, #ef5350, #d32f2f);
+      color: #fff;
+
+      &:hover {
+        background: linear-gradient(135deg, #e53935, #b71c1c);
+        transform: translateY(-1px);
+      }
+    }
+  }
+}

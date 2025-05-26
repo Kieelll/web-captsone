@@ -1,17 +1,52 @@
+import { Link, useLocation } from "react-router-dom";
 import "./sidebar.scss";
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import StoreIcon from '@mui/icons-material/Store';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import GroupsIcon from '@mui/icons-material/Groups';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LogoutIcon from '@mui/icons-material/Logout';
-import { Link } from "react-router-dom";
-
-import logo from "../../assets/greenconnect-logo.png"; 
+import {
+  Dashboard as DashboardIcon,
+  PersonOutlineOutlined as PersonIcon,
+  Store as StoreIcon,
+  CreditCard as CreditCardIcon,
+  TrendingUp as TrendingUpIcon,
+  Groups as GroupsIcon,
+  AccountCircle as AccountIcon,
+  Logout as LogoutIcon,
+  Map as MapIcon,
+  CalendarMonth as CalendarIcon,
+  LocationOn as LocationIcon,
+  Chat as ChatIcon,
+  AdminPanelSettings as AdminIcon,
+  PostAdd as PostIcon,
+  Inventory as StorageIcon
+} from '@mui/icons-material';
+import logo from "../../assets/greenconnect-logo.png";
 
 export const Sidebar = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const sections = [
+    {
+      title: "MAIN",
+      className: "main-section",
+      links: [
+        { to: "/", icon: <DashboardIcon />, label: "Dashboard" },
+        { to: "/Map", icon: <MapIcon />, label: "Map" },
+        { to: "/Chats", icon: <ChatIcon />, label: "Chat" },
+        { to: "/Schedule", icon: <CalendarIcon />, label: "Schedules" },
+      ],
+    },
+    {
+      title: "MANAGEMENT",
+      className: "management-section",
+      links: [
+        { to: "/Users", icon: <PersonIcon />, label: "Users" },
+        { to: "/Transaction", icon: <CreditCardIcon />, label: "Transaction" },
+        { to: "/Location", icon: <LocationIcon />, label: "Location" },
+        { to: "/AdminAccount", icon: <AdminIcon />, label: "Admin Account" },
+        { to: "/stocks", icon: <StorageIcon />, label: "Stocks" },
+      ],
+    },
+  ];
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -22,50 +57,19 @@ export const Sidebar = () => {
       <hr />
       <div className="center">
         <ul>
-          <p className="title">MAIN</p>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <li>
-              <DashboardIcon className="icon" />
-              <span>Dashboard</span>
-            </li>
-          </Link>
-
-          <p className="title">LIST</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
-            <li>
-              <PersonOutlineOutlinedIcon className="icon" />
-              <span>Users</span>
-            </li>
-          </Link>
-          <li>
-            <GroupsIcon className="icon" />
-            <span>Groups</span>
-          </li>
-
-          <p className="title">USEFUL</p>
-          <Link to="/view" style={{ textDecoration: "none" }}>
-            <li>
-              <CreditCardIcon className="icon" />
-              <span>Transactions</span>
-            </li>
-          </Link>
-          <Link to="/Sched" style={{ textDecoration: "none" }}>
-          <li>
-            <TrendingUpIcon className="icon" />
-            <span>Schedules</span>
-          </li>
-          </Link>
-         
-
-          <p className="title">USER</p>
-          <li>
-            <AccountCircleIcon className="icon" />
-            <span>Profile</span>
-          </li>
-          <li>
-            <LogoutIcon className="icon" />
-            <span>Logout</span>
-          </li>
+          {sections.map((section) => (
+            <div key={section.title} className={`section ${section.className}`}>
+              <p className="title">{section.title}</p>
+              {section.links.map((link) => (
+                <Link to={link.to} key={link.label} style={{ textDecoration: "none" }}>
+                  <li className={currentPath === link.to ? "active" : ""}>
+                    <span className="icon">{link.icon}</span>
+                    <span>{link.label}</span>
+                  </li>
+                </Link>
+              ))}
+            </div>
+          ))}
         </ul>
       </div>
     </div>

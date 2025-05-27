@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { userRows, userColumns } from '../../LocationTableData';
 import { DataGrid } from '@mui/x-data-grid';
 import LocationModal from '../LocationModal/LocationModal';
+import ExportLocationsModal from '../ExportLocationsModal/ExportLocationsModal';
 import './LocationTable.scss';
 
 const LocationTable = () => {
@@ -17,6 +18,7 @@ const LocationTable = () => {
     latitude: '',
     longitude: ''
   });
+  const [showExportModal, setShowExportModal] = useState(false);
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
@@ -73,7 +75,19 @@ const LocationTable = () => {
     <div className="locationTable">
       <div className="dataLocationTable">
         Location Table
-        <button className="link" onClick={handleAdd}>Add New</button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <button className="link" onClick={handleAdd}>Add New</button>
+          <div className="exportButtonContainer">
+            <button
+              className="exportIconBtn"
+              onClick={() => setShowExportModal(true)}
+              aria-label="Export to PDF"
+            >
+              <span role="img" aria-label="pdf">📄</span>
+            </button>
+            <span className="exportTooltip">Export to PDF</span>
+          </div>
+        </div>
       </div>
       <div className="locationWrapper">
         <DataGrid
@@ -93,6 +107,12 @@ const LocationTable = () => {
         mode={modalMode}
         formData={formData}
         setFormData={setFormData}
+      />
+
+      <ExportLocationsModal
+        show={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        locations={data} // Pass the current location data
       />
     </div>
   );

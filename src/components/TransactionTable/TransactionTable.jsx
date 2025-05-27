@@ -3,10 +3,12 @@ import { DataGrid } from '@mui/x-data-grid';
 import { userRows, userColumns } from '../../TransactionData';
 import './TransactionTable.scss';
 import { Link } from 'react-router-dom';
+import ExportTransactionsModal from '../ExportTransactionsModal/ExportTransactionsModal';
 
 export const TransactionTable = () => {
   const [data, setData] = useState(userRows);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
+  const [showExportModal, setShowExportModal] = useState(false);
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
@@ -39,9 +41,19 @@ export const TransactionTable = () => {
     <div className="transactionTable">
       <div className="datatableTitle">
         Transaction Table
-        <Link to="/users/new" className="link">
-          Add New
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <Link to="/users/new" className="link">Add New</Link>
+          <div className="exportButtonContainer">
+            <button
+              className="exportIconBtn"
+              onClick={() => setShowExportModal(true)}
+              aria-label="Export to PDF"
+            >
+              <span role="img" aria-label="pdf">📄</span>
+            </button>
+            <span className="exportTooltip">Export to PDF</span>
+          </div>
+        </div>
       </div>
 
       <div className="transactionContents">
@@ -91,6 +103,12 @@ export const TransactionTable = () => {
           )}
         </div>
       </div>
+
+      <ExportTransactionsModal
+        show={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        transactions={data}
+      />
     </div>
   );
 };

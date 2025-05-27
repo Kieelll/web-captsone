@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { userColumns, userRows } from '../../datatablesource';
 import { Link } from 'react-router-dom';
 import UserModal from '../UserModal/UserModal';
+import ExportUsersModal from '../ExportUsersModal/ExportUsersModal';
 import './datatable.scss';
 
 const Datatable = () => {
@@ -23,6 +24,7 @@ const Datatable = () => {
     latitude: '',
     longitude: ''
   });
+  const [showExportModal, setShowExportModal] = useState(false);
 
   const handleEdit = (row) => {
     setFormData(row);
@@ -80,7 +82,19 @@ const Datatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         User Table
-        <button className="link" onClick={handleAdd}>Add New</button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <button className="link" onClick={handleAdd}>Add New</button>
+          <div className="exportButtonContainer">
+            <button
+              className="exportIconBtn"
+              onClick={() => setShowExportModal(true)}
+              aria-label="Export to PDF"
+            >
+              <span role="img" aria-label="pdf">📄</span>
+            </button>
+            <span className="exportTooltip">Export to PDF</span>
+          </div>
+        </div>
       </div>
       <div className="tableWrapper">
         <DataGrid
@@ -100,6 +114,12 @@ const Datatable = () => {
         mode={modalMode}
         formData={formData}
         setFormData={setFormData}
+      />
+
+      <ExportUsersModal
+        show={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        users={data} // Pass the current user data
       />
     </div>
   );

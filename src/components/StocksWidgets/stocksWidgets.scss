@@ -37,6 +37,56 @@
         transform: translateY(-2px);
       }
     }
+
+    .exportButtonContainer {
+      position: relative;
+      display: inline-block;
+    }
+
+    .exportIconBtn {
+      background: none;
+      border: none;
+      padding: 4px 6px;
+      font-size: 22px;
+      color: #388e3c;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.2s;
+      margin-left: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover, &:focus {
+        background: #e0f5d8;
+        color: #205c2e;
+        outline: none;
+      }
+    }
+
+    .exportTooltip {
+      visibility: hidden;
+      opacity: 0;
+      background: #205c2e;
+      color: #fff;
+      font-size: 14px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      position: absolute;
+      top: 120%;
+      right: 0;
+      white-space: nowrap;
+      z-index: 10;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      box-shadow: 0 2px 8px rgba(34,139,34,0.13);
+    }
+
+    .exportButtonContainer:hover .exportTooltip,
+    .exportButtonContainer:focus-within .exportTooltip {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 
   .cardsWrapper {

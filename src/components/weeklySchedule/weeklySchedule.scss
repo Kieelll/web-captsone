@@ -102,34 +102,73 @@
 
         .collection {
           background-color: #c8e6c9;
-          padding: 6px 8px;
+          padding: 8px;
           margin-bottom: 6px;
           border-radius: 6px;
-          font-size: 13px;
+          font-size: 12px;
           color: #1b5e20;
           display: flex;
-          justify-content: space-between;
-          align-items: center;
+          flex-direction: column;
+          gap: 4px;
+          position: relative;
 
           .time {
             font-weight: 600;
-            margin-right: 4px;
+            color: #2e7d32;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            &::before {
+              content: "🕒";
+              font-size: 12px;
+            }
           }
 
           .type {
             font-style: italic;
+            color: #1b5e20;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+          }
+
+          .zone {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #2e7d32;
+            font-weight: 500;
+
+            &::before {
+              content: "📍";
+              font-size: 12px;
+            }
           }
 
           .deleteBtn {
+            position: absolute;
+            top: 4px;
+            right: 4px;
             background: none;
             border: none;
             color: #d32f2f;
             font-size: 14px;
-            margin-left: 6px;
             cursor: pointer;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            transition: all 0.2s;
 
             &:hover {
               color: #b71c1c;
+              background-color: rgba(211, 47, 47, 0.1);
             }
           }
         }
@@ -137,35 +176,86 @@
     }
   }
 
-  // Centered Fullscreen Modal
-  .modal {
+  // Modal Styles
+  .modalOverlay {
     position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 1000;
+  }
 
-    .modalContent {
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      width: 90%;
-      max-width: 500px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+  .modalContent {
+    background: linear-gradient(135deg, #e0f5d8, #f1fff8);
+    border: 1px solid #a0d8a0;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 300px;
 
-      input {
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        outline: none;
-        font-size: 14px;
+    h3 {
+      color: #2e7d32;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    input {
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #d2f7c7;
+      font-size: 14px;
+      outline: none;
+
+      &::placeholder {
+        color: #4a7740;
+      }
+    }
+
+    .errorText {
+      color: #d32f2f;
+      font-size: 12px;
+      margin-top: -6px;
+      margin-bottom: 6px;
+    }
+
+    .allSchedulesSearchInput {
+      padding: 8px 12px;
+      border: 1px solid #a0d8a0;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      width: calc(100% - 24px);
+      box-sizing: border-box;
+      background-color: #f8fff8;
+      color: #205c2e;
+
+      &::placeholder {
+        color: #4a7740;
+      }
+    }
+
+    .allSchedulesList {
+      max-height: 400px;
+      overflow-y: auto;
+      margin: 10px 0;
+
+      .scheduleGroup {
+        margin-bottom: 15px;
+
+        h4 {
+          color: #2e7d32;
+          margin-bottom: 8px;
+          font-size: 16px;
+        }
       }
 
       .collection {
@@ -175,100 +265,180 @@
         font-size: 13px;
         color: #2e7d32;
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        position: relative;
-
+        gap: 0;
+        min-height: 32px;
+        
+        .time {
+          min-width: 52px;
+          max-width: 60px;
+          text-align: left;
+          font-weight: 600;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
         .details {
           display: flex;
-          justify-content: flex-start;
-          gap: 30px;
-          position: absolute;
-          left: 90px;
-        }
+          align-items: center;
+          margin-left: 12px;
+          flex: 1;
+          min-width: 0;
 
-        .editBtn {
-          background: none;
-          border: none;
-          color: #1976d2;
-          cursor: pointer;
-          margin-left: 8px;
-
-          &:hover {
-            color: #0d47a1;
+          .type {
+            min-width: 30px;
+            max-width: 100px;
+            width: 60px;
+            text-align: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          .zone {
+            min-width: 80px;
+            max-width: 100px;
+            width: 100px;
+            text-align: left;
+            
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #2e7d32;
+            font-weight: 500;
           }
         }
-
-        .deleteBtn {
-          background: none;
-          border: none;
-          color: #d32f2f;
-          cursor: pointer;
-          margin-left: 8px;
-
-          &:hover {
-            color: #b71c1c;
+        .modify {
+          display: flex;
+          gap: 8px;
+          margin-left: auto;
+          align-items: center;
+          
+          .editBtn {
+            background: none;
+            border: none;
+            color: #1976d2;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 0 4px;
+            &:hover {
+              color: #0d47a1;
+            }
+          }
+          .deleteBtn {
+            background: none;
+            border: none;
+            color: #d32f2f;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0 4px;
+            &:hover {
+              color: #b71c1c;
+            }
           }
         }
       }
+    }
 
-      .modalButtons {
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
+    .modalButtons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
 
-        .addBtn {
-          background-color: #4caf50;
-          color: white;
-          padding: 10px;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
+      .saveBtn, .deleteBtn, .cancelBtn {
+        padding: 10px 16px;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
 
-          &:hover {
-            background-color: #388e3c;
-          }
+      .saveBtn {
+        background: linear-gradient(45deg, #9be19b, #519b4a);
+        color: white;
+
+        &:hover {
+          background: linear-gradient(45deg, #6dc96d, #407a3d);
         }
+      }
 
-        .deleteBtn {
-          background-color: #d32f2f;
-          color: white;
-          padding: 8px 16px;
-          border-radius: 6px;
-          border: none;
-          cursor: pointer;
+      .deleteBtn {
+        background: linear-gradient(45deg, #ef5350, #d32f2f);
+        color: white;
 
-          &:hover {
-            background-color: #b71c1c;
-          }
+        &:hover {
+          background: linear-gradient(45deg, #e53935, #b71c1c);
         }
+      }
 
-        .cancelBtn {
-          background-color: #ccc;
-          color: #333;
-          padding: 13px;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
+      .cancelBtn {
+        background: #cbecc3;
+        color: #1e4822;
 
-          &:hover {
-            background-color: #bdbdbd;
-          }
+        &:hover {
+          background: #b5dbb1;
         }
       }
     }
   }
 
-  .cancelBtn {
-    background-color: #ccc;
-    color: #333;
-    padding: 13px;
+  .exportIconBtn {
+    position: relative;
+    background: none;
     border: none;
-    border-radius: 8px;
+    padding: 4px 6px;
+    font-size: 22px;
+    color: #388e3c;
     cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.2s;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .exportIconBtn:hover, .exportIconBtn:focus {
+    background: #e0f5d8;
+    color: #205c2e;
+    outline: none;
+  }
+  .exportIconBtn .exportTooltip {
+    visibility: hidden;
+    opacity: 0;
+    background: #205c2e;
+    color: #fff;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    position: absolute;
+    top: 120%;
+    right: 0;
+    white-space: nowrap;
+    z-index: 10;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(34,139,34,0.13);
+  }
+  .exportIconBtn:hover .exportTooltip,
+  .exportIconBtn:focus .exportTooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+}
 
-    &:hover {
-      background-color: #bdbdbd;
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .weeklySchedule {
+    padding: 15px;
+
+    .scheduleContainer {
+      padding: 15px;
+    }
+
+    .collectorBlock {
+      .calendarGrid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
   }
 }

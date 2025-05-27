@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./weeklySchedule.scss";
+import ExportPDFModal from "../ExportPDFModal/ExportPDFModal";
 
 const WeeklySchedule = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -14,6 +15,8 @@ const WeeklySchedule = () => {
   const [editTarget, setEditTarget] = useState({ key: null, index: null });
 
   const [showAllModal, setShowAllModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [allSchedulesSearchTerm, setAllSchedulesSearchTerm] = useState('');
 
   const startOfWeek = new Date(currentDate);
   startOfWeek.setDate(currentDate.getDate() - currentDate.getDay() + 1);
@@ -100,6 +103,19 @@ const WeeklySchedule = () => {
     setErrors({});
   };
 
+  // Filter collections for All Schedules Modal
+  const filteredAllSchedules = Object.entries(collections).reduce((acc, [date, entries]) => {
+    const filteredEntries = entries.filter(entry => 
+      entry.time.toLowerCase().includes(allSchedulesSearchTerm.toLowerCase()) ||
+      entry.type.toLowerCase().includes(allSchedulesSearchTerm.toLowerCase()) ||
+      entry.zone.toLowerCase().includes(allSchedulesSearchTerm.toLowerCase())
+    );
+    if (filteredEntries.length > 0) {
+      acc[date] = filteredEntries;
+    }
+    return acc;
+  }, {});
+
   return (
     <div className="weeklySchedule">
       <div className="dataLocationTable">
@@ -147,7 +163,8 @@ const WeeklySchedule = () => {
                       }}
                     >
                       <span className="time">{c.time}</span>
-                      <span className="type">{c.type}</span> - Zone {c.zone}
+                      <span className="type">{c.type}</span>
+                      <span className="zone">Zone {c.zone}</span>
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -168,7 +185,7 @@ const WeeklySchedule = () => {
 
         {/* Add/Edit Modal */}
         {selectedDate && (
-          <div className="modal">
+          <div className="modalOverlay">
             <div className="modalContent">
               <h3>
                 {editMode ? "Edit" : "Add"} Collection for{" "}
@@ -182,19 +199,17 @@ const WeeklySchedule = () => {
                   setFormData({ ...formData, time: e.target.value })
                 }
               />
-              {errors.time && <div style={{ color: "red" }}>{errors.time}</div>}
+              {errors.time && <div className="errorText">{errors.time}</div>}
 
               <input
                 type="text"
-                placeholder="Description" //"Type (e.g., Food Waste)" 
+                placeholder="Description"
                 value={formData.type}
                 onChange={(e) =>
                   setFormData({ ...formData, type: e.target.value })
                 }
               />
-              {errors.type && (
-                <div style={{ color: "red" }}>{errors.type}</div>
-              )}
+              {errors.type && <div className="errorText">{errors.type}</div>}
 
               <input
                 type="text"
@@ -204,12 +219,10 @@ const WeeklySchedule = () => {
                   setFormData({ ...formData, zone: e.target.value })
                 }
               />
-              {errors.zone && (
-                <div style={{ color: "red" }}>{errors.zone}</div>
-              )}
+              {errors.zone && <div className="errorText">{errors.zone}</div>}
 
               <div className="modalButtons">
-                <button onClick={handleSubmit} className="addBtn">
+                <button onClick={handleSubmit} className="saveBtn">
                   {editMode ? "Update" : "Add"}
                 </button>
                 <button
@@ -226,9 +239,9 @@ const WeeklySchedule = () => {
           </div>
         )}
 
-        {/* Delete Confirmation */}
+        {/* Delete Confirmation Modal */}
         {showDeleteConfirm && (
-          <div className="modal">
+          <div className="modalOverlay">
             <div className="modalContent">
               <h3>Are you sure you want to delete this entry?</h3>
               <div className="modalButtons">
@@ -254,69 +267,83 @@ const WeeklySchedule = () => {
 
         {/* All Schedules Modal */}
         {showAllModal && (
-          <div
-            className="modal"
-            onClick={(e) => {
-              if (e.target.className === "modal") setShowAllModal(false);
-            }}
-          >
-            <div
-              className="modalContent"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h3>All Scheduled Events</h3>
-              <div style={{ maxHeight: "400px", overflowY: "auto" }}>
-                {Object.keys(collections).length === 0 ? (
-                  <p>No schedules available.</p>
+          <div className="modalOverlay" onClick={() => setShowAllModal(false)}>
+            <div className="modalContent" onClick={(e) => e.stopPropagation()}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
+                <h3>All Scheduled Events</h3>
+                <button
+                  className="exportIconBtn"
+                  onClick={() => setShowExportModal(true)}
+                  aria-label="Export to PDF"
+                >
+                  <span role="img" aria-label="pdf">📄</span>
+                  <span className="exportTooltip">Export to PDF</span>
+                </button>
+              </div>
+              <input
+                type="text"
+                placeholder="Search events..."
+                className="allSchedulesSearchInput"
+                value={allSchedulesSearchTerm}
+                onChange={(e) => setAllSchedulesSearchTerm(e.target.value)}
+              />
+              <div className="allSchedulesList">
+                {Object.keys(filteredAllSchedules).length === 0 ? (
+                  <p>No schedules found.</p>
                 ) : (
-                  Object.entries(collections).map(([key, entries]) => (
-                    <div key={key}>
+                  Object.entries(filteredAllSchedules).map(([key, entries]) => (
+                    <div key={key} className="scheduleGroup">
                       <h4>{key}</h4>
                       {entries.map((entry, index) => (
                         <div key={index} className="collection">
-                          <span className="time">{entry.time}</span>{" "}
+                          <span className="time">{entry.time}</span>
                           <div className="details">
-                            <span className="type">{entry.type}</span> - Zone{" "}
-                          {entry.zone}
+                            <span className="type">{entry.type}</span>
+                            <span className="zone">Zone {entry.zone}</span>
                           </div>
-                          
                           <div className="modify">
                             <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleEditEntry(key, index);
-                              setShowAllModal(false);
-                            }}
-                            className="editBtn"
-                          >
-                            Edit
-                          </button>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setDeleteTarget({ key, index });
-                              setShowDeleteConfirm(true);
-                              setShowAllModal(false);
-                            }}
-                            className="deleteBtn"
-                          >
-                            ✕
-                          </button>
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleEditEntry(key, index);
+                                setShowAllModal(false);
+                              }}
+                              className="editBtn"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setDeleteTarget({ key, index });
+                                setShowDeleteConfirm(true);
+                                setShowAllModal(false);
+                              }}
+                              className="deleteBtn"
+                            >
+                              ✕
+                            </button>
                           </div>
-                          
                         </div>
                       ))}
                     </div>
                   ))
                 )}
               </div>
-              <button onClick={() => setShowAllModal(false)} className="cancelBtn">
-                Close
-              </button>
+              <div className="modalButtons">
+                <button onClick={() => setShowAllModal(false)} className="cancelBtn">
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         )}
       </div>
+      <ExportPDFModal
+        show={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        collections={collections}
+      />
     </div>
   );
 };

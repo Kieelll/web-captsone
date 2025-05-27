@@ -40,6 +40,7 @@
 
     .items {
       @include flex-center;
+      margin-left: auto;
 
       .item {
         @include flex-center;

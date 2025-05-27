@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './stocksWidgets.scss';
 import StockModal from '../StockModal/StockModal';
+import ExportStocksModal from '../ExportStocksModal/ExportStocksModal';
 
 export const StocksWidgets = () => {
   const [cards, setCards] = useState([
@@ -27,6 +28,7 @@ export const StocksWidgets = () => {
   ]);
 
   const [showModal, setShowModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
   const [formData, setFormData] = useState({ title: '', stock: '' });
 
   const handleChange = (cardId, categoryLabel, newInput) => {
@@ -94,9 +96,21 @@ export const StocksWidgets = () => {
     <div className="stocksContainer">
       <div className="headerSection">
         Stock Information
-        <button className="addStockButton" onClick={handleAddCardClick}>
-          + Add Stock Card
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <button className="addStockButton" onClick={handleAddCardClick}>
+            + Add Stock Card
+          </button>
+          <div className="exportButtonContainer">
+            <button
+              className="exportIconBtn"
+              onClick={() => setShowExportModal(true)}
+              aria-label="Export to PDF"
+            >
+              <span role="img" aria-label="pdf">📄</span>
+            </button>
+            <span className="exportTooltip">Export to PDF</span>
+          </div>
+        </div>
       </div>
 
       <div className="cardsWrapper">
@@ -140,6 +154,12 @@ export const StocksWidgets = () => {
         onSave={handleConfirmAdd}
         formData={formData}
         setFormData={setFormData}
+      />
+
+      <ExportStocksModal
+        show={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        stocks={cards}
       />
     </div>
   );

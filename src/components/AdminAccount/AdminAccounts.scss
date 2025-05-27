@@ -40,6 +40,56 @@
         transform: translateY(-2px);
       }
     }
+
+    .exportButtonContainer {
+      position: relative;
+      display: inline-block;
+    }
+
+    .exportIconBtn {
+      background: none;
+      border: none;
+      padding: 4px 6px;
+      font-size: 22px;
+      color: #388e3c;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.2s;
+      margin-left: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover, &:focus {
+        background: #e0f5d8;
+        color: #205c2e;
+        outline: none;
+      }
+    }
+
+    .exportTooltip {
+      visibility: hidden;
+      opacity: 0;
+      background: #205c2e;
+      color: #fff;
+      font-size: 14px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      position: absolute;
+      top: 120%;
+      right: 0;
+      white-space: nowrap;
+      z-index: 10;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      box-shadow: 0 2px 8px rgba(34,139,34,0.13);
+    }
+
+    .exportButtonContainer:hover .exportTooltip,
+    .exportButtonContainer:focus-within .exportTooltip {
+      visibility: visible;
+      opacity: 1;
+    }
   }
   
     .adminContents {
@@ -147,6 +197,22 @@
         margin-bottom: 10px;
       }
 
+      .historySearchInput {
+        padding: 8px 12px;
+        border: 1px solid #a0d8a0;
+        border-radius: 8px;
+        font-size: 16px;
+        margin-bottom: 15px;
+        width: calc(100% - 24px);
+        box-sizing: border-box;
+        background-color: #f8fff8;
+        color: #205c2e;
+
+        &::placeholder {
+          color: #4a7740;
+        }
+      }
+
       p {
         margin: 4px 0;
         font-size: 16px;
@@ -171,6 +237,14 @@
         padding-bottom: 10px;
         border-bottom: 1px solid #d9f0dd;
 
+        .adminInfo {
+          color: #1b5e20;
+          font-weight: 500;
+          font-size: 13px;
+          display: block;
+          margin: 4px 0;
+        }
+
         .timestamp {
           color: #777;
           font-size: 12px;
@@ -179,7 +253,7 @@
         }
 
         &:last-child {
-          border-bottom: none; // prevent double-border at end
+          border-bottom: none;
         }
       }
     }

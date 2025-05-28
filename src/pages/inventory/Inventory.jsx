@@ -1,13 +1,21 @@
-import "./inventory.scss"
-import Navbar from "../../components/navbar/Navbar"
-import Sidebar from "../../components/sidebar/Sidebar"
+import React from 'react';
+import Navbar from "../../components/navbar/Navbar";
+import Sidebar from "../../components/sidebar/Sidebar";
+import "./inventory.scss";
 
-export const Inventory = () => {
+const Inventory = () => {
   return (
     <div className="inventory">
       <Sidebar />
       <div className="inventoryContainer">
-      This is inventory
+        <Navbar />
+        <div className="content">
+          <h1>Inventory Management</h1>
+          <div className="inventoryContent">
+            {/* Add your inventory content here */}
+            <p>This is the inventory management section</p>
+          </div>
+        </div>
       </div>
     </div>
   )

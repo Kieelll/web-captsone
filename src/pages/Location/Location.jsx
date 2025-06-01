@@ -1,9 +1,9 @@
-import "./Location.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
-import LocationTable from "../../components/LocationTable/LocationTable";
 import { TourProvider, useTour } from "@reactour/tour";
 import { useCallback } from "react";
+import LocationTable from "../../components/LocationTable/LocationTable";
+import Navbar from "../../components/navbar/Navbar";
+import Sidebar from "../../components/sidebar/Sidebar";
+import "./Location.scss";
 
 // Tour Steps
 const steps = [
@@ -42,7 +42,7 @@ const LocationContent = () => {
     <div className="location">
       <Sidebar />
       <div className="locationContainer">
-        <Navbar onHelpClick={startTour} /> {/* Add onHelpClick for tutorial */}
+        <Navbar onHelpClick={startTour} />
         <div className="locationContent">
           <LocationTable />
         </div>
@@ -56,24 +56,14 @@ const Location = () => {
   return (
     <TourProvider
       steps={steps}
-      styles={() => ({
-        maskWrapper: { zIndex: 9999 },
+      styles={{
         popover: (base) => ({
           ...base,
-          backgroundColor: "#e8f5e9",
-          color: "#1b5e20",
-          borderRadius: "10px",
-          padding: "20px",
+          backgroundColor: '#f5f5f5',
+          borderRadius: '8px',
+          padding: '20px',
         }),
-        badge: (base) => ({
-          ...base,
-          backgroundColor: "#66bb6a",
-        }),
-        close: (base) => ({
-          ...base,
-          color: "#1b5e20",
-        }),
-      })}
+      }}
       showNavigation
       showBadge
       showCloseButton

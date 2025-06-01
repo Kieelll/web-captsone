@@ -3,15 +3,16 @@ import React, { useState } from 'react';
 import { userColumns, userRows } from '../../PostData';
 import './PostContent.scss';
 
-// Local images
-import post1img1 from '../../assets/images/post1-img1.png';
-import post1img2 from '../../assets/images/post1-img2.png';
-import post2img1 from '../../assets/images/post2-img1.png';
-import post2img2 from '../../assets/images/post2-img2.png';
-
+// Using placeholder images instead of local images
 const postImages = {
-  1: [post1img1, post1img2],
-  2: [post2img1, post2img2],
+  1: [
+    'https://via.placeholder.com/400x300?text=Post+1+Image+1',
+    'https://via.placeholder.com/400x300?text=Post+1+Image+2'
+  ],
+  2: [
+    'https://via.placeholder.com/400x300?text=Post+2+Image+1',
+    'https://via.placeholder.com/400x300?text=Post+2+Image+2'
+  ],
 };
 
 const PostContent = () => {

@@ -1,0 +1,151 @@
+.home {
+  display: flex;  
+  
+
+  .homeContainer{
+    flex: 6;  
+    
+
+    .widgets, .charts{   
+      display: flex;  
+      padding: 20px;  
+      gap: 20px;  // gap between
+    }
+
+    .charts{
+      padding: 5px 20px;
+      
+    }
+    // .listContainer{
+    //   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+    //   padding: 20px;
+    //   margin: 20px;
+
+    //   .listTitle{
+    //     font-weight: 500;
+    //     color: gray;
+    //     margin-bottom: 15px;
+        
+    //   }
+    // }
+  }
+}
+
+.map-page {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f9fa;
+
+  .map-content-container {
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+
+    .map-wrapper {
+      flex: 1;
+      padding: 20px;
+      position: relative;
+      min-height: 0;
+
+      .map-container {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .map-controls {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 1;
+
+        button {
+          width: 50px;
+          height: 50px;
+          border-radius: 12px;
+          background-color: hsl(128, 75%, 92%);
+          border: none;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: #34D399;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+            svg {
+              color: white;
+              font-size: 28px;
+            }
+          }
+
+          svg {
+            font-size: 26px;
+            color: #059669;
+            transition: all 0.3s ease;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Ensure Mapbox controls are visible and styled
+.mapboxgl-control-container {
+  .mapboxgl-ctrl-top-right {
+    top: 30px;
+    right: 30px;
+
+    .mapboxgl-ctrl-group {
+      background-color: hsl(128, 75%, 92%);
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(36, 255, 47, 0.1);
+
+      button {
+        &:hover {
+          background-color: #34D399;
+
+          .mapboxgl-ctrl-icon {
+            filter: brightness(0) invert(1);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Style the popup
+.mapboxgl-popup {
+  max-width: 200px;
+  
+  .mapboxgl-popup-content {
+    padding: 15px;
+    border-radius: 8px;
+    
+    h3 {
+      margin: 0 0 5px 0;
+      color: #059669;
+      font-size: 16px;
+    }
+    
+    p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+  }
+}
+
+// Ensure the map canvas takes full height
+.mapboxgl-canvas-container {
+  height: 100%;
+}

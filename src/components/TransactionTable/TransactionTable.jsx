@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { userRows, userColumns } from '../../TransactionData';
-import './TransactionTable.scss';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { userColumns, userRows } from '../../TransactionData';
 import ExportTransactionsModal from '../ExportTransactionsModal/ExportTransactionsModal';
+import './TransactionTable.scss';
 
-export const TransactionTable = () => {
+const TransactionTable = () => {
   const [data, setData] = useState(userRows);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
   const [showExportModal, setShowExportModal] = useState(false);
@@ -23,7 +22,7 @@ export const TransactionTable = () => {
     {
       field: 'action',
       headerName: 'Action',
-      flex: 1,
+      width: 180,
       renderCell: (params) => (
         <div className="cellAction">
           <button className="viewButton" onClick={() => handleView(params.row)}>
@@ -42,7 +41,7 @@ export const TransactionTable = () => {
       <div className="datatableTitle">
         Transaction Table
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <Link to="/users/new" className="link">Add New</Link>
+          <button className="link" onClick={() => setSelectedTransaction({})}>Add New</button>
           <div className="exportButtonContainer">
             <button
               className="exportIconBtn"
@@ -56,53 +55,52 @@ export const TransactionTable = () => {
         </div>
       </div>
 
-      <div className="transactionContents">
-        <div className="transactionGrid">
-          <DataGrid
-            className="datagrid"
-            rows={data}
-            columns={userColumns.concat(actionColumn)}
-            pageSize={6}
-            rowsPerPageOptions={[]}
-            checkboxSelection
-          />
-        </div>
-
-        <div className="transactionDescription scrollableDetails">
-          {selectedTransaction ? (
-            <div className="transactionDetailsCard">
-              <h3>Delivery Details</h3>
-              <p><strong>Name:</strong> {selectedTransaction.name}</p>
-              <p><strong>Phone:</strong> {selectedTransaction.phone}</p>
-              <p><strong>Location:</strong> {selectedTransaction.location}</p>
-              <p><strong>Order Status:</strong> {selectedTransaction.orderStatus}</p>
-              <p><strong>Order Date:</strong> {selectedTransaction.orderDate}</p>
-              <p><strong>Mode of Payment:</strong> {selectedTransaction.paymentMethod}</p>
-              <p><strong>Delivery Date:</strong> {selectedTransaction.deliveryDate}</p>
-
-              <h3>Product Details</h3>
-              {selectedTransaction.products?.map((product, index) => (
-                <div key={index} className="productItem">
-                  {/* Optional: Display image based on product name */}
-                  {/* <img src={`/images/${product.name.toLowerCase().replace(/\s/g, '')}.png`} alt={product.name} className="productImage" /> */}
-                  <div className="productInfo">
-                    <p><strong>{product.name}</strong></p>
-                    <p>Quantity: {product.quantity}</p>
-                    <p>Price: {product.price}</p>
-                  </div>
-                </div>
-              ))}
-
-              <div className="productTotals">
-                <p><strong>Total Quantity:</strong> {selectedTransaction.quantity}</p>
-                <p><strong>Total Amount:</strong> {selectedTransaction.totalPrice}</p>
-              </div>
-            </div>
-          ) : (
-            <div className="noSelection">Select a transaction to view details.</div>
-          )}
-        </div>
+      <div className="tableWrapper">
+        <DataGrid
+          className="datagrid"
+          rows={data}
+          columns={userColumns.concat(actionColumn)}
+          pageSize={9}
+          rowsPerPageOptions={[9]}
+          checkboxSelection
+          disableSelectionOnClick
+        />
       </div>
+
+      {selectedTransaction && (
+        <div className="transactionDetails">
+          <h2>Transaction Details</h2>
+          <div className="detailsContent">
+            <div className="detailItem">
+              <span className="itemLabel">Transaction ID:</span>
+              <span className="itemValue">{selectedTransaction.transactionID || ''}</span>
+            </div>
+            <div className="detailItem">
+              <span className="itemLabel">Customer Name:</span>
+              <span className="itemValue">{selectedTransaction.name || ''}</span>
+            </div>
+            <div className="detailItem">
+              <span className="itemLabel">Date:</span>
+              <span className="itemValue">{selectedTransaction.date || ''}</span>
+            </div>
+            <div className="detailItem">
+              <span className="itemLabel">Amount:</span>
+              <span className="itemValue">{selectedTransaction.amount || ''}</span>
+            </div>
+            <div className="detailItem">
+              <span className="itemLabel">Status:</span>
+              <span className="itemValue">{selectedTransaction.status || ''}</span>
+            </div>
+            <div className="detailItem">
+              <span className="itemLabel">Payment Method:</span>
+              <span className="itemValue">{selectedTransaction.paymentMethod || ''}</span>
+            </div>
+          </div>
+          <button className="closeButton" onClick={() => setSelectedTransaction(null)}>
+            Close
+          </button>
+        </div>
+      )}
 
       <ExportTransactionsModal
         show={showExportModal}

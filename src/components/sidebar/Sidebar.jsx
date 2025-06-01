@@ -1,23 +1,17 @@
-import { Link, useLocation } from "react-router-dom";
-import "./sidebar.scss";
 import {
-  Dashboard as DashboardIcon,
-  PersonOutlineOutlined as PersonIcon,
-  Store as StoreIcon,
-  CreditCard as CreditCardIcon,
-  TrendingUp as TrendingUpIcon,
-  Groups as GroupsIcon,
-  AccountCircle as AccountIcon,
-  Logout as LogoutIcon,
-  Map as MapIcon,
-  CalendarMonth as CalendarIcon,
-  LocationOn as LocationIcon,
-  Chat as ChatIcon,
   AdminPanelSettings as AdminIcon,
-  PostAdd as PostIcon,
+  CalendarMonth as CalendarIcon,
+  Chat as ChatIcon,
+  CreditCard as CreditCardIcon,
+  Dashboard as DashboardIcon,
+  LocationOn as LocationIcon,
+  Map as MapIcon,
+  PersonOutlineOutlined as PersonIcon,
   Inventory as StorageIcon
 } from '@mui/icons-material';
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/greenconnect-logo.png";
+import "./sidebar.scss";
 
 export const Sidebar = () => {
   const location = useLocation();
@@ -43,6 +37,7 @@ export const Sidebar = () => {
         { to: "/Location", icon: <LocationIcon />, label: "Location" },
         { to: "/AdminAccount", icon: <AdminIcon />, label: "Admin Account" },
         { to: "/stocks", icon: <StorageIcon />, label: "Stocks" },
+        
       ],
     },
   ];

@@ -9,8 +9,6 @@ import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./map.scss";
 
-// Replace with your actual Mapbox token
-mapboxgl.accessToken = 'pk.eyJ1IjoidG9nZWJpc3UiLCJhIjoiY205cHE3MW43MWZleDJsczcxcXRwanBlNyJ9.3bkps3vPGr21guFbpgXX3Q';
 
 const Map = () => {
   const mapContainer = useRef(null);
